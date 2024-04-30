@@ -8,7 +8,7 @@
   <div class="row mt-3">
     <div class="col">
       <label for="" class="form-label">Título da Vaga</label>
-      <input type="text" class="form-control"   v-model="titulo">
+      <input type="text" class="form-control" v-model="titulo">
       <div class="form-text">Por exemplo: Programador JavaScript e VueJS.</div>
     </div>
   </div>
@@ -46,7 +46,7 @@
   </div>
   <div class="row mt-3">
     <div class="col">
-      {{ titulo }} {{ descricao }} {{ salario }} {{ modalidade }} {{ tipo }}
+      
       <button type="submit" class="btn btn-primary" @click="salvarVaga()">
         Cadastrar
       </button>
@@ -67,18 +67,30 @@ export default {
       modalidade: '',
       tipo: ''  
     }),
+
     methods:{
+
+      
       salvarVaga(){
-        let vaga = {
+        let tempoDecorrido = Date.now()
+        let dataAtual = new Date(tempoDecorrido)
+        
+
+        let vagas = JSON.parse(localStorage.getItem('vagas'))
+
+        if(!vagas) vagas = []
+        vagas.push({  
           titulo: this.titulo,
           descricao: this.descricao,
           salario: this.salario,
           modalidade: this.modalidade,
-          tipo: this.tipo
+          tipo: this.tipo,
+          publicacao: dataAtual.toLocaleString('pt-BR')        
+          }) 
           
-        }
-        localStorage.setItem('vagas', JSON.stringify(vaga))
+          localStorage.setItem('vagas', JSON.stringify(vagas))
       }
+
     }
 
 }
