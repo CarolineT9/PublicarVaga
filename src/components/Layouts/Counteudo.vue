@@ -1,7 +1,6 @@
 <template>
     
-        <PublicarVagas></PublicarVagas>
-        <Home></Home>
+        <component :is="conteudo"></component>
     
 </template>
 
@@ -9,9 +8,16 @@
 import Home from '../Views/Home.vue'
 import PublicarVagas from '../Views/PublicarVagas.vue'
 export default {
+    name: 'Conteudo',
+    props:{
+      conteudo:{
+        type: String,
+        required: true
+      }
+    },
     components: {
-    Home,
-    PublicarVagas
+      Home,
+      PublicarVagas
   }
 }
 </script>

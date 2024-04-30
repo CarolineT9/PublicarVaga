@@ -12,6 +12,7 @@
     "Babel": "0.0.1",
     "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.23.1",
+    "mitt": "^3.0.1",
     "vue": "^3.4.26"
   },
   "devDependencies": {
