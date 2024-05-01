@@ -7,8 +7,8 @@
               <div class="col d-flex justify-content-between">
                 <div>{{titulo}}</div>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox">
-                  <label for="" class="form-check-label">Favoritar</label>
+                  <input class="form-check-input" type="checkbox" v-model="favoritada">
+                  <label for="" class="form-check-label">Favoritar {{ favoritada }}</label>
                 </div>
 
               </div>
@@ -29,6 +29,19 @@
 <script>
 export default {
     name: 'Vagas',
+    data: ()=>({
+      favoritada: false
+    }),
+    watch:{
+      favoritada(valorNovo){
+        if(valorNovo){
+          this.emitter.emit('favoritarVaga', this.titulo)
+        }else{
+          this.emitter.emit('desfavoritarVaga', this.titulo)
+        }
+      }
+    },
+  
     props: ['titulo', 'descricao', 'salario', 'modalidade', 'tipo', 'publicacao'],
     computed:{
       getModalidade(){
